@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Link } from "react-router-dom";
 import { PRODUCT_ROUTE } from "../lib/constants/routes";
 
@@ -262,8 +263,8 @@ const ProductList = () => {
             </Link>
           ))}
         </div>
-        <div className="grid justify-items-end ">
-          <button className="bg-black text-white py-5 px-5 rounded-full ">
+        <div className="flex justify-end ">
+          <button className="bg-black text-white py-5 px-5 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
