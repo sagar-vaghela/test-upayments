@@ -25,14 +25,14 @@ export type productType = {
 
 export type categoriesDataType = {
     categories: Array<categoryType>,
-    category: undefined | categoryType | null | object,
+    category: any | undefined | null | categoryType,
     isLoading: boolean,
     error: any | undefined | null,
 }
 
 export type productDataType = {
     products: Array<productType>,
-    product:  productType,
+    product:  any | undefined | null | productType,
     isLoading: boolean,
     error: any | undefined | null,
 }
