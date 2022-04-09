@@ -1,7 +1,9 @@
+import { ThunkAction } from "redux-thunk";
+import { Action } from '@reduxjs/toolkit';
 
 export type initialStateType = {
     categoriesData: categoriesDataType,
-    produdctData: productDataType,
+    productData: productDataType,
 }
 
 export type categoryType = {
@@ -23,14 +25,16 @@ export type productType = {
 
 export type categoriesDataType = {
     categories: Array<categoryType>,
-    category: object,
+    category: undefined | categoryType | null | object,
     isLoading: boolean,
     error: any | undefined | null,
 }
 
 export type productDataType = {
     products: Array<productType>,
-    product: object,
+    product:  productType,
     isLoading: boolean,
     error: any | undefined | null,
 }
+
+export type AppThunk = ThunkAction<void, initialStateType, null, Action<string>>;

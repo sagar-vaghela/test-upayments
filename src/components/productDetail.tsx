@@ -1,5 +1,20 @@
-/* eslint-disable jsx-a11y/alt-text */
+import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDetails } from "../actions";
+import { initialStateType, productType } from "../interfaces";
+
 const ProductDetail = () => {
+    const { id } = useParams();
+
+    const product = useSelector<initialStateType, productType>(state => state.productData.product);
+    const dispatch = useDispatch()
+    useEffect(() => {  
+      dispatch(getProductDetails(id));
+    }, []);
+
+    console.log("products", product);
+
     return (
         <div className='flex justify-center'>
             <div className='box-border '>

@@ -7,7 +7,7 @@ const initialState: initialStateType = {
     isLoading: false,
     error: null
   },
-  produdctData: {
+  productData: {
     products: [],
     product: {},
     isLoading: false,
