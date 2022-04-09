@@ -32,9 +32,18 @@ export type categoriesDataType = {
 
 export type productDataType = {
     products: Array<productType>,
-    product:  any | undefined | null | productType,
+    product: any | undefined | null | productType,
     isLoading: boolean,
     error: any | undefined | null,
 }
 
 export type AppThunk = ThunkAction<void, initialStateType, null, Action<string>>;
+
+export type formProps = {
+    name: string;
+    description: string;
+    price: number;
+    category: string;
+    developerEmail: string;
+    avatar: string;
+};

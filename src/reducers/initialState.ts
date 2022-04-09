@@ -9,7 +9,7 @@ const initialState: initialStateType = {
   },
   productData: {
     products: [],
-    product: null,
+    product: {},
     isLoading: false,
     error: null
   }

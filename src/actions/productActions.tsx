@@ -1,5 +1,5 @@
-import { AppThunk } from "../interfaces";
-import { GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
+import { AppThunk, formProps } from "../interfaces";
+import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
 import * as ProductService from "../services/product-services";
 
 // Get Product
@@ -53,5 +53,32 @@ export const getProductDetails = (id: string | undefined): AppThunk => async (di
       })
       .catch((error) => {
         dispatch(getProductDetailsFailed("error.response"));
+      });
+};
+
+// create Product
+const createProductStarted = () => ({
+  type: GET_CREATE_PRODUCT_STARTED
+});
+
+const createProductSucceeded = (data: any) => ({
+  type: GET_CREATE_PRODUCT_SUCCEEDED,
+  payload: data
+});
+
+const createProductFailed = (error: string) => ({
+  type: GET_CREATE_PRODUCT_FAILED,
+  payload: error,
+  error: true
+});
+
+export const createProduct = (payload: formProps): AppThunk => async (dispatch) => {
+    dispatch(createProductStarted());
+    await ProductService.createProduct(payload)
+      .then((res) => {
+        dispatch(createProductSucceeded(res.data));
+      })
+      .catch((error) => {
+        dispatch(createProductFailed("error.response"));
       });
 };

@@ -1,4 +1,4 @@
-import { GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
+import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
 import initialState from "./initialState";
 
 const productReducer = (state = initialState.productData, action) => {
@@ -16,6 +16,25 @@ const productReducer = (state = initialState.productData, action) => {
         isLoading: false
       };
     case GET_PRODUCTS_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    
+    case GET_CREATE_PRODUCT_STARTED:
+      return {
+        ...state,
+        isLoading: true,
+        error: null
+      };
+    case GET_CREATE_PRODUCT_SUCCEEDED:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+        isLoading: false
+      };
+    case GET_CREATE_PRODUCT_FAILED:
       return {
         ...state,
         isLoading: false,
