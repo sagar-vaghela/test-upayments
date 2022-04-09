@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PRODUCT_ROUTE } from "../lib/constants/routes";
+import { CREATE_PRODUCT, PRODUCT_ROUTE } from "../lib/constants/routes";
 
 const products = [
   {
@@ -263,6 +263,7 @@ const ProductList = () => {
           ))}
         </div>
         <div className="grid justify-items-end ">
+          <Link to={CREATE_PRODUCT}>
           <button className="bg-black text-white py-5 px-5 rounded-full ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -279,6 +280,7 @@ const ProductList = () => {
               />
             </svg>
           </button>
+          </Link>
         </div>
       </div>
     </div>
