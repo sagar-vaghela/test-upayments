@@ -11,7 +11,10 @@ import {
 } from '../lib/constants/actionTypes';
 import initialState from './initialState';
 
-const productReducer = (state = initialState.productData, action) => {
+const productReducer = (
+  state = initialState.productData,
+  action: { type: string; payload: any }
+) => {
   switch (action.type) {
     case GET_PRODUCTS_STARTED:
       return {

@@ -5,7 +5,10 @@ import {
 } from '../lib/constants/actionTypes';
 import initialState from './initialState';
 
-const categoryReducer = (state = initialState.categoriesData, action) => {
+const categoryReducer = (
+  state = initialState.categoriesData,
+  action: { type: string; payload: any }
+) => {
   switch (action.type) {
     case GET_CATEGORIES_STARTED:
       return {

@@ -3,7 +3,7 @@ import { ROOT_ROUTE } from '../../lib/constants/routes';
 
 const Header = () => {
   return (
-    <div className="pt-6">
+    <div className="pt-6" data-testid="header">
       <ul className="flex justify-between bg-white shadow-md rounded-md">
         <li className="mr-3">
           <Link
