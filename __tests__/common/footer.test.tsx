@@ -3,31 +3,29 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import App from '../src/App';
+import App from '../../src/App';
 import { MemoryRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import { GET_PRODUCTS_STARTED } from '../src/lib/constants/actionTypes';
 
 const middlewares = [thunk]; // add your middlewares like `redux-thunk`
 const mockStore = configureStore(middlewares);
 
 // You would import the action from your codebase in a real scenario
-function productSuccess() {
+function success() {
   return {
-    type: GET_PRODUCTS_STARTED
+    type: 'GET_PRODUCTS_STARTED'
   };
 }
 
-function fetchProductData() {
+function fetchData() {
   return (dispatch) => {
     return axios
       .get('https://62286b649fd6174ca82321f1.mockapi.io/case-study/products') // Some async action with promise
-      .then(() => dispatch(productSuccess()));
+      .then(() => dispatch(success()));
   };
 }
-
-describe('Render App', () => {
+describe('Render App with footer', () => {
   const initialState = {
     categoriesData: {
       categories: [],
@@ -52,14 +50,15 @@ describe('Render App', () => {
       </Provider>
     );
 
-  test('App is rendered correctly', () => {
+  test('Header is rendered correctly', () => {
     const { getByTestId } = renderComponent();
-    expect(getByTestId('app')).toBeInTheDocument();
+    expect(getByTestId('footer')).toBeInTheDocument();
+    expect(getByTestId('create-btn')).toBeInTheDocument();
 
     // Return the promise
-    return store.dispatch(fetchProductData()).then(() => {
+    return store.dispatch(fetchData()).then(() => {
       const actions = store.getActions();
-      expect(actions[0]).toEqual(productSuccess());
+      expect(actions[0]).toEqual(success());
     });
   });
 });

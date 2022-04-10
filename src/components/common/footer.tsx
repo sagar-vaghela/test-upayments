@@ -3,10 +3,10 @@ import { CREATE_PRODUCT } from '../../lib/constants/routes';
 
 const Header = () => {
   return (
-    <div className="pt-6 fixed bottom-3 right-8">
+    <div className="pt-6 fixed bottom-3 right-8" data-testid="footer">
       <div className="grid justify-items-end ">
         <Link to={CREATE_PRODUCT}>
-          <button className="bg-black text-white py-5 px-5 rounded-full ">
+          <button className="bg-black text-white py-5 px-5 rounded-full" data-testid="create-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

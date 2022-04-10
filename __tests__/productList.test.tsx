@@ -3,11 +3,11 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import App from '../src/App';
 import { MemoryRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import { GET_PRODUCTS_STARTED } from '../src/lib/constants/actionTypes';
+import ProductList from '../src/components/productList';
 
 const middlewares = [thunk]; // add your middlewares like `redux-thunk`
 const mockStore = configureStore(middlewares);
@@ -30,13 +30,30 @@ function fetchProductData() {
 describe('Render App', () => {
   const initialState = {
     categoriesData: {
-      categories: [],
+      categories: [
+        {
+          "createdAt": "2022-03-09T04:12:28.083Z",
+          "name": "electronics",
+          "id": "1"
+        }
+      ],
       category: {},
       isLoading: false,
       error: null
     },
     productData: {
-      products: [],
+      products: [
+        {
+          "createdAt": "2022-03-26T15:12:50.845Z",
+          "name": "Apple MacBook",
+          "avatar": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_TR?wid=1808&hei=1680&fmt=jpeg&qlt=80&.v=1633657407000",
+          "id": "17",
+          "price": "1999",
+          "category": "electronics",
+          "description": "of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy",
+          "developerEmail": "salikalper@gmail.com"
+          },
+      ],
       product: {},
       isLoading: false,
       error: null
@@ -47,19 +64,14 @@ describe('Render App', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <ProductList />
         </Router>
       </Provider>
     );
 
-  test('App is rendered correctly', () => {
-    const { getByTestId } = renderComponent();
-    expect(getByTestId('app')).toBeInTheDocument();
-
-    // Return the promise
-    return store.dispatch(fetchProductData()).then(() => {
-      const actions = store.getActions();
-      expect(actions[0]).toEqual(productSuccess());
-    });
+  test('Product List is rendered correctly', () => {
+    const { getByTestId, getByText } = renderComponent();
+    expect(getByTestId('productlist')).toBeInTheDocument();
+    expect(getByText(initialState.productData.products[0].name)).toBeInTheDocument();
   });
 });

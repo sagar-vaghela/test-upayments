@@ -35,7 +35,7 @@ const ProductList = () => {
   );
 
   return (
-    <div>
+    <div data-testid="productlist">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="flex mb-4 ">
           <div className="grid justify-items-start pb-6 h-12 w-1/2">
