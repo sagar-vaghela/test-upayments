@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./components";
+import { Footer } from "./components/common";
 import CreateProduct from "./components/createProduct";
 import ProductDetail from "./components/productDetail";
 import ProductList from "./components/productList";
@@ -18,6 +19,7 @@ function App() {
           <Route path={CREATE_PRODUCT} element={<CreateProduct />} />
         </Routes>
       </div>
+        <Footer/>
     </div>
   );
 }

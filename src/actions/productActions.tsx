@@ -1,5 +1,5 @@
 import { AppThunk, formProps } from "../interfaces";
-import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
+import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED, REMOVE_PRODUCT_FAILED, REMOVE_PRODUCT_STARTED, REMOVE_PRODUCT_SUCCEEDED } from "../lib/constants/actionTypes";
 import * as ProductService from "../services/product-services";
 
 // Get Product
@@ -80,5 +80,33 @@ export const createProduct = (payload: formProps): AppThunk => async (dispatch) 
       })
       .catch((error) => {
         dispatch(createProductFailed("error.response"));
+      });
+};
+
+
+// Remove Product
+const removeProductStarted = () => ({
+  type: REMOVE_PRODUCT_STARTED
+});
+
+const removeProductSucceeded = (data: any) => ({
+  type: REMOVE_PRODUCT_SUCCEEDED,
+  payload: data
+});
+
+const removeProductFailed = (error: string) => ({
+  type: REMOVE_PRODUCT_FAILED,
+  payload: error,
+  error: true
+});
+
+export const removeProduct = (id: string): AppThunk => async (dispatch) => {
+    dispatch(removeProductStarted());
+    await ProductService.removeProduct(id)
+      .then((res) => {
+        dispatch(removeProductSucceeded(res.data));
+      })
+      .catch((error) => {
+        dispatch(removeProductFailed("error.response"));
       });
 };

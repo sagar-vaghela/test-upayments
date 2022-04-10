@@ -13,3 +13,7 @@ export const getProductDetails = (id: string | undefined): AxiosPromise<{ produc
 export const createProduct = (payload: formProps): AxiosPromise<void> => {
   return httpService.post(`products`, payload);
 };
+
+export const removeProduct = (id: string): AxiosPromise<void> => {
+  return httpService.delete(`products/${id}`);
+};
