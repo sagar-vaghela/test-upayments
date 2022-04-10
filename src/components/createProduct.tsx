@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategories, createProduct } from "../actions";
-import { categoryType, formProps, initialStateType } from "../interfaces";
-import { ROOT_ROUTE } from "../lib/constants/routes";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, createProduct } from '../actions';
+import { categoryType, formProps, initialStateType } from '../interfaces';
+import { ROOT_ROUTE } from '../lib/constants/routes';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
   const categories = useSelector<initialStateType, categoryType[]>(
@@ -17,39 +17,37 @@ const CreateProduct = () => {
   }, []);
 
   const [formData, setFormData] = useState<formProps>({
-    name: "",
-    description: "",
+    name: '',
+    description: '',
     price: 0,
-    category: "",
+    category: '',
     developerEmail: 'sagar19vaghela.sv@gmail.com',
-    avatar: "",
-});
+    avatar: ''
+  });
 
-const {name, description, price, category, avatar } = formData
+  const { name, description, price, category, avatar } = formData;
 
   const onSubmit = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
-    if(name !== "" || description !== "" || category !== "" || avatar !== ""){
-        await dispatch(createProduct(formData));
-        navigate(ROOT_ROUTE);
-    }
-    else {
-        alert("something is wrong, please add proper data");
+    if (name !== '' || description !== '' || category !== '' || avatar !== '') {
+      await dispatch(createProduct(formData));
+      navigate(ROOT_ROUTE);
+    } else {
+      alert('something is wrong, please add proper data');
     }
   };
 
-    const onChange = (e: any) => {
-        let data: formProps = formData;
-        const { name, value } = e.target;
-        data = {
-            ...formData,
-            [name]: value
-        }
-        setFormData(data);
-    }
+  const onChange = (e: any) => {
+    let data: formProps = formData;
+    const { name, value } = e.target;
+    data = {
+      ...formData,
+      [name]: value
+    };
+    setFormData(data);
+  };
 
-
-    console.log("formData", formData);
+  console.log('formData', formData);
 
   return (
     <>

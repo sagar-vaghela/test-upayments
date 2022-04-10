@@ -1,5 +1,15 @@
-import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
-import initialState from "./initialState";
+import {
+  GET_CREATE_PRODUCT_FAILED,
+  GET_CREATE_PRODUCT_STARTED,
+  GET_CREATE_PRODUCT_SUCCEEDED,
+  GET_PRODUCTS_FAILED,
+  GET_PRODUCTS_STARTED,
+  GET_PRODUCTS_SUCCEEDED,
+  GET_PRODUCT_DETAILS_FAILED,
+  GET_PRODUCT_DETAILS_STARTED,
+  GET_PRODUCT_DETAILS_SUCCEEDED
+} from '../lib/constants/actionTypes';
+import initialState from './initialState';
 
 const productReducer = (state = initialState.productData, action) => {
   switch (action.type) {
@@ -21,7 +31,7 @@ const productReducer = (state = initialState.productData, action) => {
         isLoading: false,
         error: action.payload
       };
-    
+
     case GET_CREATE_PRODUCT_STARTED:
       return {
         ...state,
@@ -40,7 +50,7 @@ const productReducer = (state = initialState.productData, action) => {
         isLoading: false,
         error: action.payload
       };
-    
+
     case GET_PRODUCT_DETAILS_STARTED:
       return {
         ...state,

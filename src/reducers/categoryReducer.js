@@ -1,5 +1,9 @@
-import { GET_CATEGORIES_FAILED, GET_CATEGORIES_STARTED, GET_CATEGORIES_SUCCEEDED } from "../lib/constants/actionTypes";
-import initialState from "./initialState";
+import {
+  GET_CATEGORIES_FAILED,
+  GET_CATEGORIES_STARTED,
+  GET_CATEGORIES_SUCCEEDED
+} from '../lib/constants/actionTypes';
+import initialState from './initialState';
 
 const categoryReducer = (state = initialState.categoriesData, action) => {
   switch (action.type) {

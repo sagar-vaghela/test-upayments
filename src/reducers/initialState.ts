@@ -1,4 +1,4 @@
-import { initialStateType } from "../interfaces";
+import { initialStateType } from '../interfaces';
 
 const initialState: initialStateType = {
   categoriesData: {

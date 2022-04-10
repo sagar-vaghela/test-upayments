@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ROOT_ROUTE } from "../../lib/constants/routes";
+import { Link } from 'react-router-dom';
+import { ROOT_ROUTE } from '../../lib/constants/routes';
 
 const Header = () => {
   return (

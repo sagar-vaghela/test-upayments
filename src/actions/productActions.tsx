@@ -1,6 +1,19 @@
-import { AppThunk, formProps } from "../interfaces";
-import { GET_CREATE_PRODUCT_FAILED, GET_CREATE_PRODUCT_STARTED, GET_CREATE_PRODUCT_SUCCEEDED, GET_PRODUCTS_FAILED, GET_PRODUCTS_STARTED, GET_PRODUCTS_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED, REMOVE_PRODUCT_FAILED, REMOVE_PRODUCT_STARTED, REMOVE_PRODUCT_SUCCEEDED } from "../lib/constants/actionTypes";
-import * as ProductService from "../services/product-services";
+import { AppThunk, formProps } from '../interfaces';
+import {
+  GET_CREATE_PRODUCT_FAILED,
+  GET_CREATE_PRODUCT_STARTED,
+  GET_CREATE_PRODUCT_SUCCEEDED,
+  GET_PRODUCTS_FAILED,
+  GET_PRODUCTS_STARTED,
+  GET_PRODUCTS_SUCCEEDED,
+  GET_PRODUCT_DETAILS_FAILED,
+  GET_PRODUCT_DETAILS_STARTED,
+  GET_PRODUCT_DETAILS_SUCCEEDED,
+  REMOVE_PRODUCT_FAILED,
+  REMOVE_PRODUCT_STARTED,
+  REMOVE_PRODUCT_SUCCEEDED
+} from '../lib/constants/actionTypes';
+import * as ProductService from '../services/product-services';
 
 // Get Product
 const getProductsStarted = () => ({
@@ -19,14 +32,14 @@ const getProductsFailed = (error: string) => ({
 });
 
 export const getProducts = (): AppThunk => async (dispatch) => {
-    dispatch(getProductsStarted());
-    await ProductService.getProducts()
-      .then((res) => {
-        dispatch(getProductsSucceeded(res.data));
-      })
-      .catch((error) => {
-        dispatch(getProductsFailed("error.response"));
-      });
+  dispatch(getProductsStarted());
+  await ProductService.getProducts()
+    .then((res) => {
+      dispatch(getProductsSucceeded(res.data));
+    })
+    .catch((error) => {
+      dispatch(getProductsFailed('error.response'));
+    });
 };
 
 // Get Product
@@ -45,16 +58,18 @@ const getProductDetailsFailed = (error: string) => ({
   error: true
 });
 
-export const getProductDetails = (id: string | undefined): AppThunk => async (dispatch) => {
+export const getProductDetails =
+  (id: string | undefined): AppThunk =>
+  async (dispatch) => {
     dispatch(getProductDetailsStarted());
     await ProductService.getProductDetails(id)
       .then((res) => {
         dispatch(getProductDetailsSucceeded(res.data));
       })
       .catch((error) => {
-        dispatch(getProductDetailsFailed("error.response"));
+        dispatch(getProductDetailsFailed('error.response'));
       });
-};
+  };
 
 // create Product
 const createProductStarted = () => ({
@@ -72,17 +87,18 @@ const createProductFailed = (error: string) => ({
   error: true
 });
 
-export const createProduct = (payload: formProps): AppThunk => async (dispatch) => {
+export const createProduct =
+  (payload: formProps): AppThunk =>
+  async (dispatch) => {
     dispatch(createProductStarted());
     await ProductService.createProduct(payload)
       .then((res) => {
         dispatch(createProductSucceeded(res.data));
       })
       .catch((error) => {
-        dispatch(createProductFailed("error.response"));
+        dispatch(createProductFailed('error.response'));
       });
-};
-
+  };
 
 // Remove Product
 const removeProductStarted = () => ({
@@ -100,13 +116,15 @@ const removeProductFailed = (error: string) => ({
   error: true
 });
 
-export const removeProduct = (id: string): AppThunk => async (dispatch) => {
+export const removeProduct =
+  (id: string): AppThunk =>
+  async (dispatch) => {
     dispatch(removeProductStarted());
     await ProductService.removeProduct(id)
       .then((res) => {
         dispatch(removeProductSucceeded(res.data));
       })
       .catch((error) => {
-        dispatch(removeProductFailed("error.response"));
+        dispatch(removeProductFailed('error.response'));
       });
-};
+  };

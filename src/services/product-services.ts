@@ -6,7 +6,9 @@ export const getProducts = (): AxiosPromise<{ products: productType[] }> => {
   return httpService.get(`products`);
 };
 
-export const getProductDetails = (id: string | undefined): AxiosPromise<{ product: productType}> => {
+export const getProductDetails = (
+  id: string | undefined
+): AxiosPromise<{ product: productType }> => {
   return httpService.get(`products/${id}`);
 };
 

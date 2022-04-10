@@ -1,6 +1,10 @@
-import { AppThunk } from "../interfaces";
-import { GET_CATEGORIES_FAILED, GET_CATEGORIES_STARTED, GET_CATEGORIES_SUCCEEDED, GET_PRODUCT_DETAILS_FAILED, GET_PRODUCT_DETAILS_STARTED, GET_PRODUCT_DETAILS_SUCCEEDED } from "../lib/constants/actionTypes";
-import * as CategoryService from "../services/category-services";
+import { AppThunk } from '../interfaces';
+import {
+  GET_CATEGORIES_FAILED,
+  GET_CATEGORIES_STARTED,
+  GET_CATEGORIES_SUCCEEDED
+} from '../lib/constants/actionTypes';
+import * as CategoryService from '../services/category-services';
 
 // Get Categories
 const getCategoriesStarted = () => ({
@@ -19,12 +23,12 @@ const getCategoriesFailed = (error: string) => ({
 });
 
 export const getCategories = (): AppThunk => async (dispatch) => {
-    dispatch(getCategoriesStarted());
-    await CategoryService.getCategories()
-      .then((res) => {
-        dispatch(getCategoriesSucceeded(res.data));
-      })
-      .catch((error) => {
-        dispatch(getCategoriesFailed("error.response"));
-      });
+  dispatch(getCategoriesStarted());
+  await CategoryService.getCategories()
+    .then((res) => {
+      dispatch(getCategoriesSucceeded(res.data));
+    })
+    .catch((error) => {
+      dispatch(getCategoriesFailed('error.response'));
+    });
 };
